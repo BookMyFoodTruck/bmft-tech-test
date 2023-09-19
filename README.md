@@ -5,7 +5,5 @@ The Slider and Radio button components have been removed.
 Re-create them from the screenshot, add Storybook stories, and test the form validation.
 Bonus points for proposing improvements to the rest of the code.
 When you are done, create a PR with your code.
-You can create a Draft PR first to test the workflows.
-Every check should pass.
 
 Good luck :)
