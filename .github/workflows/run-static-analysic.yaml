@@ -1,0 +1,44 @@
+name: Run Static Analysis
+on:
+  pull_request:
+    branches: [develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  launch-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Export modules_cache_key to $GITHUB_OUTPUT
+        id: mvars
+        run: |
+          export NPM_HASH=${{ hashFiles('package-lock.json') }}
+          echo "modules_cache_key=bmft-node_modules-$NPM_HASH" >> $GITHUB_OUTPUT
+
+      - name: Checking node_modules cache against modules_cache_key
+        uses: actions/cache@v3
+        id: cache-node-modules-check
+        with:
+          path: node_modules
+          key: ${{ steps.mvars.outputs.modules_cache_key }}
+
+      - name: Install node modules
+        if: steps.cache-node-modules-check.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Run checks
+        run: npm run check-all
+        env:
+          ESLINT_LEVEL: warn
+          name: Build

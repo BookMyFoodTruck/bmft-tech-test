@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  &::-webkit-scrollbar {
+    width: 0.5em; /* Width of the invisible scrollbar */
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Transparent thumb */
+  } /* Hide scrollbars */
+}
+
+.login-title {
+  font-size: 2vw;
+}
+
+@media (max-width: 768px) {
+  .login-title {
+    font-size: 5vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 5vw;
+  }
+}

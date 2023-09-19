@@ -1,0 +1,13 @@
+name: 'Combine PRs'
+on:
+  workflow_dispatch:
+
+jobs:
+  combine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: GHA-combine-PRs
+        uses: vic1707/GHA-combine-PRs@1.1.2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          must-be-green: false
