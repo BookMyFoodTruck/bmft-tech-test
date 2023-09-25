@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import FoodtruckSpace from '../../src/app/(Foodtruck)/foodtruck-space/page';
+// TODO: The import had an error. This fixes the import for now but I do not have the full context.
+import FoodtruckSpace from '../../src/components/FoodTruckStepOne';
 
 const meta: Meta<typeof FoodtruckSpace> = {
   title: 'Pages/FoodtruckSpace',
