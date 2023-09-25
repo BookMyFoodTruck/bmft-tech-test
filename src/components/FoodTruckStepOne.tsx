@@ -1,17 +1,18 @@
 'use client';
-import { useState } from 'react';
 import { NextPage } from 'next';
-import Input from './Input';
-import RadioButtonGroup from './RadioButtonGroup';
-import { useTranslation } from '../i18n/client';
-import Label from './Label';
-import RangeSlider from './RangeSlider';
-import TextField from './TextField';
-import Tags from './Tags';
-import ValidationMsg from './ValidationMsg';
+import { useState } from 'react';
 import { Controller } from 'react-hook-form';
-import Dropzone from './Dropzone';
+import { useTranslation } from '../i18n/client';
+
 import theme from '../styles/theme';
+import Dropzone from './Dropzone';
+import Input from './Input';
+import Label from './Label';
+import RadioButtonGroup from './RadioButtonGroup';
+import RangeSlider from './RangeSlider';
+import Tags from './Tags';
+import TextField from './TextField';
+import ValidationMsg from './ValidationMsg';
 
 interface Props {
   step?: number;
@@ -29,21 +30,12 @@ const FoodTruckStepOne: NextPage<Props> = ({
   const { t } = useTranslation();
   const [formValues, setFormValues] = useState({});
   const [imageFiles, setImageFiles] = useState({});
+  const [characterCount, setCharacterCount] = useState(0);
+  const [TagsValue, setTagsValue] = useState([]);
 
-  const DIESEL = 'stepper.diesel';
-  const GPL = 'stepper.gpl';
-  const ELECTRIC = 'stepper.electric';
-  const BIKE_FOOD = 'stepper.bike-food';
-
-  const fuelOptions = [
-    { id: 1, title: t(DIESEL) },
-    { id: 2, title: t(GPL) },
-    { id: 3, title: t(ELECTRIC) },
-    { id: 4, title: t(BIKE_FOOD) },
-  ];
   const INPUT_CLASS =
     'text-red-900 placeholder-red-700 border border-red-500 rounded outline-none focus:ring-red-500 focus:border-red-500 focus:ring-1';
-  const [characterCount, setCharacterCount] = useState(0);
+
   const handleFieldChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -56,14 +48,56 @@ const FoodTruckStepOne: NextPage<Props> = ({
     setCharacterCount(value.length);
   };
 
-  const [TagsValue, setTagsValue] = useState([]);
-
   const handleTruckImageChange = (selectedFiles: File[]) => {
     setImageFiles({
       ...imageFiles,
       truckimage: selectedFiles,
     });
   };
+
+  const DIESEL = 'stepper.diesel';
+  const GPL = 'stepper.gpl';
+  const ELECTRIC = 'stepper.electric';
+  const BIKE_FOOD = 'stepper.bike-food';
+
+  const fuelOptions = [
+    { id: 1, title: t(DIESEL) },
+    { id: 2, title: t(GPL) },
+    { id: 3, title: t(ELECTRIC) },
+    { id: 4, title: t(BIKE_FOOD) },
+  ];
+
+  const [selectedValue, setSelectedValue] = useState(1);
+
+  const handleFuelTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(Number(event.target.value));
+  };
+
+  const socketsRequiredMarks = [
+    {
+      value: 0,
+      label: '0',
+    },
+    {
+      value: 8,
+      label: '8',
+    },
+  ];
+
+  const catchmentAreaMarks = [
+    {
+      value: 0,
+      label: '0 KM',
+    },
+    {
+      value: 24,
+      label: '24 KM',
+    },
+    {
+      value: 100,
+      label: '+100 KM ',
+    },
+  ];
 
   return (
     <>
@@ -146,9 +180,11 @@ const FoodTruckStepOne: NextPage<Props> = ({
                 textColor={theme.colors.dark}
               />
               <Controller
-                render={({ field }) => (
+                render={({}) => (
                   <RadioButtonGroup
-                  // Complete me
+                    options={fuelOptions}
+                    selectedValue={selectedValue}
+                    handleChange={handleFuelTypeChange}
                   />
                 )}
                 name='truckfuel'
@@ -171,9 +207,7 @@ const FoodTruckStepOne: NextPage<Props> = ({
                 control={control}
                 defaultValue={2}
                 render={({ field }) => (
-                  <RangeSlider
-                  // Complete me
-                  />
+                  <RangeSlider marks={socketsRequiredMarks} max={8} />
                 )}
               />
               {errors.truckprises && (
@@ -238,9 +272,7 @@ const FoodTruckStepOne: NextPage<Props> = ({
                 control={control}
                 defaultValue={10}
                 render={({ field }) => (
-                  <RangeSlider
-                  // Complete me
-                  />
+                  <RangeSlider max={100} marks={catchmentAreaMarks} />
                 )}
               />
               {errors.chalandise && (
