@@ -146,13 +146,15 @@ const FoodTruckStepOne: NextPage<Props> = ({
                 textColor={theme.colors.dark}
               />
               <Controller
-                render={({ field }) => (
-                  <RadioButtonGroup
-                  // Complete me
-                  />
-                )}
                 name='truckfuel'
                 control={control}
+                render={({ field }) => (
+                  <RadioButtonGroup
+                    // Complete me
+                    options={fuelOptions}
+                    {...field}
+                  />
+                )}
               />
               {errors.truckfuel && (
                 <ValidationMsg>{errors.truckfuel.message}</ValidationMsg>
@@ -172,8 +174,14 @@ const FoodTruckStepOne: NextPage<Props> = ({
                 defaultValue={2}
                 render={({ field }) => (
                   <RangeSlider
-                  // Complete me
+                    // Complete me
+                    min={0}
+                    max={8}
+                    defaultValue={0}
+                    onHoverText={true}
+                    {...field}
                   />
+
                 )}
               />
               {errors.truckprises && (
@@ -239,7 +247,12 @@ const FoodTruckStepOne: NextPage<Props> = ({
                 defaultValue={10}
                 render={({ field }) => (
                   <RangeSlider
-                  // Complete me
+                    // Complete me
+                    min={0}
+                    max={100}
+                    defaultValue={0}
+                    onHoverText={true}
+                    {...field}
                   />
                 )}
               />
