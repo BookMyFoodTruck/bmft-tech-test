@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
+
 import IconUnuploadDoc from '../../public/icon-file-warning.svg';
 import IconUploadDoc from '../../public/icon-upload-doc.svg';
 import IconDocUploaded from '../../public/icon-doc-uploaded.svg';

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { NextPage } from 'next';
+
 import SuccessEmojiIcon from '../../public/icon-success-emoji.svg';
 import Button from './Button';
 import { useTranslation } from '../i18n/client';

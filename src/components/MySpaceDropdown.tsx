@@ -1,23 +1,24 @@
 'use client';
-import React, { useState } from 'react';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import Logout from '@mui/icons-material/Logout';
-import AvatarIcon from '../../public/avatar.svg';
-import ArrowdownIcon from '../../public/arrowdown.svg';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import Divider from '@mui/material/Divider';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/image';
+import { useState } from 'react';
+
+import ArrowdownIcon from '../../public/arrowdown.svg';
+import AvatarIcon from '../../public/avatar.svg';
 import { useTranslation } from '../i18n/client';
-import Button from './Button';
 import theme from '../styles/theme';
+import Button from './Button';
 
 export default function MySpaceDropdown() {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(false);
-  // const open = Boolean(anchorEl);
+
   const handleClick = () => {
     if (anchorEl === true) {
       // Close the dropdown if it's already open

@@ -1,27 +1,30 @@
 'use client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Label from './Label';
-import Input from './Input';
+
 import { useTranslation } from '../i18n/client';
-import ValidationMsg from './ValidationMsg';
+import FoodtruckerSchema from '../validations/foodtruck.schema';
 import Button from './Button';
-import FoodtruckerSchema from '../validations/foodtrucker.schema';
-import {
-  completeProfileFF,
-  registerFoodtruckerFF,
-} from '../services/foodtrucker.service';
-import Spinner from './Spinner';
-import { useRouter, useSearchParams } from 'next/navigation';
+import Input from './Input';
+import Label from './Label';
+import ValidationMsg from './ValidationMsg';
 import theme from '../styles/theme';
-import PasswordBlock from './PasswordBlock';
+import useUserStore from '../stores/user.store';
+
+// TODO: Fix the broken imports
+import { setAuthTokenCookie } from '../lib/cookies';
 import {
   getUserByGoogleIdFF,
   queryStringToObject,
 } from '../services/auth.service';
-import { setAuthTokenCookie } from '../lib/cookies';
-import useUserStore from '../stores/user.store';
+import {
+  completeProfileFF,
+  registerFoodtruckerFF,
+} from '../services/foodtrucker.service';
+import PasswordBlock from './PasswordBlock';
+import Spinner from './Spinner';
 
 interface IFormInputs {
   firstname: string;

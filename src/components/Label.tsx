@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
+
 import infoIcon from '../../public/info-icon.svg';
 import theme from '../styles/theme';
 

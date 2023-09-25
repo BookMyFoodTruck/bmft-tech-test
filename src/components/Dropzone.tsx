@@ -8,8 +8,9 @@ import {
   ExtFile,
 } from '@files-ui/react';
 import React, { useState } from 'react';
-import ValidationMsg from './ValidationMsg';
 import Image from 'next/image';
+
+import ValidationMsg from './ValidationMsg';
 import { useTranslation } from '../i18n/client';
 import DropzoneIcon from '../../public/dropzone.svg';
 
