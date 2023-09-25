@@ -125,7 +125,7 @@ const HorizontalStepper: NextPage<Props> = ({
 
   return (
     <>
-      <div className='min-h-screen w-full grid grid-cols-6 overflow-x-hidden shadow shadow-md rounded-2xl border-2 mx-12 gap-8 py-8 px-4'>
+      <div className='min-h-screen w-full grid grid-cols-6 overflow-x-hidden shadow-md rounded-2xl border-2 mx-12 gap-8 py-8 px-4'>
         <div className='flex items-center w-full stepper col-span-6'>
           <Stack sx={{ width: '100%' }}>
             <Stepper sx={stepStyle} activeStep={activeStep} alternativeLabel>
